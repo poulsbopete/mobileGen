@@ -1,4 +1,8 @@
 apply plugin: 'com.android.application'
+// Load secrets from environment variables (ensure you have exported them via .env)
+def embraceApiKey = System.getenv('EMBRACE_API_KEY') ?: ''
+def otelEndpoint    = System.getenv('OTEL_EXPORTER_OTLP_ENDPOINT') ?: ''
+def otelHeaders     = System.getenv('OTEL_EXPORTER_OTLP_HEADERS') ?: ''
 
 android {
     compileSdk 31
@@ -8,8 +12,10 @@ android {
         targetSdk 31
         versionCode 1
         versionName '1.0'
-        buildConfigField 'String', 'OTEL_EXPORTER_OTLP_ENDPOINT', '"https://otel-demo-a5630c.apm.us-east-1.aws.elastic.cloud:443"'
-        buildConfigField 'String', 'OTEL_EXPORTER_OTLP_HEADERS', '"ApiKey UjYyUWM1WUJXM0ZuaU1RdFFKa3Q6VzNBc29PZ0g2RXJqYmdXYWstMnBrUQ=="'
+        // Injected from environment variables
+        buildConfigField 'String', 'EMBRACE_API_KEY',        "\"${embraceApiKey}\""
+        buildConfigField 'String', 'OTEL_EXPORTER_OTLP_ENDPOINT', "\"${otelEndpoint}\""
+        buildConfigField 'String', 'OTEL_EXPORTER_OTLP_HEADERS',  "\"${otelHeaders}\""
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

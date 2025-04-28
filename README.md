@@ -7,8 +7,15 @@ This repository contains sample mobile applications (Android, iOS, React Native)
 
 ## Environment Variables
 
+First copy `.env.example` to `.env` and fill in your values:
+
+```bash
+cp .env.example .env
+```
+
 Set before building/running:
 
+- `EMBRACE_API_KEY`: Your Embrace.io mobile SDK API key
 - `OTEL_EXPORTER_OTLP_ENDPOINT`: e.g. `https://otel-demo-a5630c.apm.us-east-1.aws.elastic.cloud:443`
 - `OTEL_EXPORTER_OTLP_HEADERS`: e.g. `ApiKey UjYyUWM1WUJXM0ZuaU1RdFFKa3Q6VzNBc29PZ0g2RXJqYmdXYWstMnBrUQ==`
 

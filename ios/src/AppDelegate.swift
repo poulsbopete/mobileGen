@@ -10,7 +10,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        Embrace.start(withKey: "b9cb8c2b9e2d448fa49241eb3c347d22")
+        // Initialize Embrace SDK with key from environment
+        guard let key = ProcessInfo.processInfo.environment["EMBRACE_API_KEY"], !key.isEmpty else {
+            fatalError("EMBRACE_API_KEY not set in environment")
+        }
+        Embrace.start(withKey: key)
         let endpoint = ProcessInfo.processInfo.environment["OTEL_EXPORTER_OTLP_ENDPOINT"] ?? ""
         let headers = ProcessInfo.processInfo.environment["OTEL_EXPORTER_OTLP_HEADERS"] ?? ""
         let exporter = OtlpTraceExporter(endpoint: endpoint, headers: ["Authorization": headers])

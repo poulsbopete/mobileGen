@@ -11,7 +11,8 @@ import io.opentelemetry.exporter.otlp.trace.OtlpGrpcSpanExporter
 class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-        Embrace.start(this, "b9cb8c2b9e2d448fa49241eb3c347d22")
+        // Initialize Embrace SDK with key from BuildConfig
+        Embrace.start(this, BuildConfig.EMBRACE_API_KEY)
         val endpoint = BuildConfig.OTEL_EXPORTER_OTLP_ENDPOINT
         val headers = BuildConfig.OTEL_EXPORTER_OTLP_HEADERS
         val exporter = OtlpGrpcSpanExporter.builder()

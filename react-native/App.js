@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { Embrace } from 'embrace-react-native';
+import Config from 'react-native-config';
 import { Resource } from '@opentelemetry/resources';
 import { NodeTracerProvider } from '@opentelemetry/sdk-trace-base';
 import { OTLPTraceExporter } from '@opentelemetry/exporter-otlp-http';
@@ -13,8 +14,8 @@ const provider = new NodeTracerProvider({
 });
 
 const exporter = new OTLPTraceExporter({
-  url: process.env.OTEL_EXPORTER_OTLP_ENDPOINT,
-  headers: { 'Authorization': process.env.OTEL_EXPORTER_OTLP_HEADERS }
+  url: Config.OTEL_EXPORTER_OTLP_ENDPOINT,
+  headers: { 'Authorization': Config.OTEL_EXPORTER_OTLP_HEADERS }
 });
 
 provider.addSpanProcessor(new SimpleSpanProcessor(exporter));
@@ -24,7 +25,8 @@ const tracer = provider.getTracer('mobileGen-react-native');
 
 const App = () => {
   useEffect(() => {
-    Embrace.start('b9cb8c2b9e2d448fa49241eb3c347d22');
+    // Initialize Embrace with key from .env via react-native-config
+    Embrace.start(Config.EMBRACE_API_KEY);
     generateTrace();
   }, []);
 
