@@ -1,0 +1,9 @@
+platform :ios, '13.0'
+use_frameworks!
+
+target 'mobileGen' do
+  pod 'Embrace', '~> 3.0'
+  pod 'OpenTelemetryApi', :git => 'https://github.com/open-telemetry/opentelemetry-swift.git', :branch => 'main'
+  pod 'OpenTelemetrySdk', :git => 'https://github.com/open-telemetry/opentelemetry-swift.git', :branch => 'main'
+  pod 'OpenTelemetryProtocolExporter', :git => 'https://github.com/open-telemetry/opentelemetry-swift.git', :branch => 'main'
+end

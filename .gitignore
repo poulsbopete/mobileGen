@@ -1,0 +1,24 @@
+# Gitignore for mobileGen
+# Android
+android/.gradle/
+android/**/*.iml
+android/local.properties
+android/app/build/
+android/build/
+**/build/
+
+# iOS
+ios/Pods/
+ios/DerivedData/
+ios/**/*.xcworkspace
+ios/**/*.xcuserstate
+ios/*.pbxuser
+
+# React Native
+react-native/node_modules/
+react-native/android/app/build/
+react-native/ios/build/
+
+# Misc
+.DS_Store
+*.log
