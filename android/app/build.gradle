@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 // Load secrets from environment variables (ensure you have exported them via .env)
 def embraceApiKey = System.getenv('EMBRACE_API_KEY') ?: ''
 def otelEndpoint    = System.getenv('OTEL_EXPORTER_OTLP_ENDPOINT') ?: ''
